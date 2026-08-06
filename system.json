@@ -1,0 +1,363 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+  "projectName": "WoofBnB",
+
+  "description": "Location-based Pet Services Marketplace Prototype — React + Node.js APIs → ASP.NET Core Web API + MySQL",
+
+  "prototypeStack": {
+    "frontend": "React (Vite)",
+    "backend": "Node.js (Express/Fastify REST API)",
+    "database": "PostgreSQL (Supabase as managed database only)",
+    "auth": "Node.js Authentication (JWT/OAuth, ASP.NET Identity compatible abstraction)",
+    "storage": "Local/Network File Storage",
+    "api": "REST APIs"
+  },
+
+  "productionStack": {
+    "frontend": "React SPA",
+    "backend": "ASP.NET Core Web API",
+    "database": "MySQL",
+    "auth": "ASP.NET Identity",
+    "storage": "Azure Blob Storage / Local Disk",
+    "realtime": "SignalR",
+    "deployment": "VPS Docker"
+  },
+
+  "architecture": {
+    "pattern": "Clean Architecture",
+
+    "layers": {
+      "domain": {
+        "path": "client/src/domain",
+
+        "description": "Pure business entities, value objects, enums and repository interfaces.",
+
+        "rules": [
+          "No external dependencies",
+          "No infrastructure imports",
+          "No presentation imports",
+          "No framework-specific code",
+          "No Node.js imports"
+        ]
+      },
+
+      "application": {
+        "path": "client/src/application",
+
+        "description": "Use cases, DTOs, service interfaces, validators and business orchestration.",
+
+        "rules": [
+          "May depend only on Domain",
+          "No React imports",
+          "No Node.js imports",
+          "No Infrastructure imports",
+          "Service interfaces belong here",
+          "Infrastructure implements these interfaces"
+        ]
+      },
+
+      "infrastructure": {
+        "path": "client/src/infrastructure",
+
+        "description": "External service implementations, API clients, storage providers and repository implementations.",
+
+        "rules": [
+          "May depend on Domain and Application",
+          "Node.js API clients belong here",
+          "Storage providers belong here",
+          "External providers remain isolated",
+          "No Presentation imports"
+        ]
+      },
+
+      "presentation": {
+        "path": "client/src/presentation",
+
+        "description": "React application including pages, layouts, routing and reusable UI components.",
+
+        "rules": [
+          "May depend only on Application",
+          "Never communicate directly with Node.js APIs",
+          "Never import Infrastructure",
+          "Communicate only through Application interfaces"
+        ]
+      },
+
+      "shared": {
+        "path": "client/src/shared",
+
+        "description": "Cross-cutting utilities, constants, shared types and helper functions.",
+
+        "rules": [
+          "Pure utilities",
+          "No external service dependencies",
+          "Reusable across all layers"
+        ]
+      }
+    },
+
+    "dependencyDirection": "presentation → application → domain ← infrastructure"
+  },
+
+  "database": {
+    "strategy": "MySQL-compatible from day one",
+
+    "forbidden": [
+      "jsonb columns",
+
+      "PostgreSQL array types",
+
+      "PostgreSQL triggers",
+
+      "Materialized views",
+
+      "RLS-dependent business logic",
+
+      "PostgreSQL-only extensions",
+
+      "PostgreSQL-specific SQL functions",
+
+      "SERIAL",
+
+      "BIGSERIAL"
+    ],
+
+    "allowed": [
+      "UUID primary keys",
+
+      "Normalized relational tables",
+
+      "Standard SQL",
+
+      "Foreign keys",
+
+      "Indexes",
+
+      "UTC timestamps",
+
+      "Soft delete",
+
+      "Decimal monetary values"
+    ],
+
+    "namingConventions": {
+      "tables": "PascalCase",
+
+      "columns": "camelCase",
+
+      "primaryKey": "id",
+
+      "foreignKey": "{relatedEntity}Id",
+
+      "timestamps": ["createdAt", "updatedAt", "deletedAt"]
+    }
+  },
+  "auth": {
+    "abstraction": "IAuthService",
+
+    "rules": [
+      "UI must never communicate directly with authentication providers",
+      "All authentication operations go through IAuthService",
+      "Application communicates only through interfaces",
+      "Infrastructure communicates with Node.js Authentication APIs",
+      "Authentication implementation must remain provider-agnostic",
+      "Design for future ASP.NET Identity compatibility"
+    ],
+
+    "methods": [
+      "signIn(email, password)",
+      "signUp(email, password, metadata?)",
+      "signOut()",
+      "getCurrentUser()",
+      "resetPassword(email)",
+      "updatePassword(newPassword)",
+      "refreshToken()",
+      "onAuthStateChange(callback)"
+    ]
+  },
+
+  "storage": {
+    "abstraction": "IFileStorageService",
+
+    "rules": [
+      "Presentation never accesses storage directly",
+      "Application communicates through IFileStorageService",
+      "Infrastructure communicates with Node.js Storage APIs",
+      "Prototype uses Local or Network File Storage",
+      "Production target is Azure Blob Storage or Local Disk"
+    ],
+
+    "methods": [
+      "upload(bucket, path, file)",
+      "download(bucket, path)",
+      "delete(bucket, path)",
+      "getPublicUrl(bucket, path)",
+      "list(bucket, prefix?)"
+    ]
+  },
+
+  "email": {
+    "abstraction": "IEmailService",
+
+    "rules": [
+      "Application communicates only through IEmailService",
+      "Infrastructure implements email providers",
+      "Email templates remain inside Infrastructure",
+      "Background processing should be supported",
+      "Email providers must remain replaceable"
+    ],
+
+    "methods": [
+      "sendConfirmationEmail(request)",
+      "sendOtpEmail(request)",
+      "sendNotificationEmail(request)",
+      "sendBookingConfirmation(request)",
+      "sendBookingCancellation(request)",
+      "sendWelcomeEmail(request)"
+    ]
+  },
+
+  "modules": {
+    "strategy": "Module-by-module development with shared core first",
+
+    "sharedFolder": "_shared",
+
+    "registry": [
+      {
+        "name": "_shared",
+        "description": "Cross-cutting entities, interfaces, DTOs and shared infrastructure",
+        "phase": 0,
+        "status": "active",
+        "dependsOn": []
+      },
+
+      {
+        "name": "authentication",
+        "description": "Authentication and user identity",
+        "phase": 1,
+        "status": "planned",
+        "dependsOn": ["_shared"]
+      },
+
+      {
+        "name": "users",
+        "description": "Common user profile management",
+        "phase": 1,
+        "status": "planned",
+        "dependsOn": ["authentication"]
+      },
+
+      {
+        "name": "pet-owners",
+        "description": "Pet Owner profiles",
+        "phase": 2,
+        "status": "planned",
+        "dependsOn": ["users"]
+      },
+
+      {
+        "name": "pet-sitters",
+        "description": "Pet Sitter profiles",
+        "phase": 2,
+        "status": "planned",
+        "dependsOn": ["users"]
+      },
+
+      {
+        "name": "pets",
+        "description": "Pet registration and management",
+        "phase": 3,
+        "status": "planned",
+        "dependsOn": ["pet-owners"]
+      },
+
+      {
+        "name": "availability",
+        "description": "Pet sitter availability",
+        "phase": 3,
+        "status": "planned",
+        "dependsOn": ["pet-sitters"]
+      },
+
+      {
+        "name": "search",
+        "description": "Nearby search and filtering",
+        "phase": 4,
+        "status": "planned",
+        "dependsOn": ["pet-sitters", "availability"]
+      },
+
+      {
+        "name": "bookings",
+        "description": "Booking lifecycle management",
+        "phase": 5,
+        "status": "planned",
+        "dependsOn": ["pet-owners", "pet-sitters", "pets", "availability"]
+      },
+
+      {
+        "name": "reviews",
+        "description": "Ratings and reviews",
+        "phase": 6,
+        "status": "planned",
+        "dependsOn": ["bookings"]
+      },
+
+      {
+        "name": "notifications",
+        "description": "Application notifications",
+        "phase": 7,
+        "status": "planned",
+        "dependsOn": ["bookings", "reviews"]
+      }
+    ],
+
+    "rules": [
+      "Each module must exist across all architecture layers",
+      "Domain entities reference other modules only by identifiers",
+      "Repository interfaces belong to the owning module",
+      "Infrastructure implements repository interfaces",
+      "Cross-module orchestration belongs only in the Application layer",
+      "Presentation modules never import Infrastructure directly"
+    ],
+
+    "namingConventions": {
+      "moduleFolders": "kebab-case",
+
+      "entityFiles": "PascalCase.ts",
+
+      "repositoryInterfaces": "I{Entity}Repository.ts",
+
+      "repositoryImplementations": "{Provider}{Entity}Repository.ts",
+
+      "useCases": "{Action}{Entity}UseCase.ts",
+
+      "dtos": "{Entity}{Action}Dto.ts"
+    },
+
+    "livingCatalog": "docs/domain/MODULE_DEPENDENCY_REGISTRY.md"
+  },
+
+  "conventions": {
+    "idGeneration": "UUID v4",
+
+    "dateFormat": "ISO 8601 UTC",
+
+    "softDelete": true,
+
+    "auditFields": ["createdAt", "updatedAt", "createdBy", "updatedBy"],
+
+    "errorHandling": "Result<T, Error> pattern",
+
+    "naming": {
+      "interfaces": "I{Name}",
+
+      "implementations": "{Provider}{Interface}",
+
+      "useCases": "{Action}{Entity}UseCase",
+
+      "dtos": "{Entity}{Action}Dto"
+    }
+  }
+}
