@@ -29,7 +29,7 @@
 
     "layers": {
       "domain": {
-        "path": "client/src/domain",
+        "path": "src/domain",
 
         "description": "Pure business entities, value objects, enums and repository interfaces.",
 
@@ -43,7 +43,7 @@
       },
 
       "application": {
-        "path": "client/src/application",
+        "path": "src/application",
 
         "description": "Use cases, DTOs, service interfaces, validators and business orchestration.",
 
@@ -58,7 +58,7 @@
       },
 
       "infrastructure": {
-        "path": "client/src/infrastructure",
+        "path": "src/infrastructure",
 
         "description": "External service implementations, API clients, storage providers and repository implementations.",
 
@@ -72,7 +72,7 @@
       },
 
       "presentation": {
-        "path": "client/src/presentation",
+        "path": "src/presentation",
 
         "description": "React application including pages, layouts, routing and reusable UI components.",
 
@@ -85,7 +85,7 @@
       },
 
       "shared": {
-        "path": "client/src/shared",
+        "path": "src/shared",
 
         "description": "Cross-cutting utilities, constants, shared types and helper functions.",
 
