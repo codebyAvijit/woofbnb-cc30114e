@@ -110,6 +110,15 @@ export class RestAuthService implements IAuthService {
     return this.persist(result);
   }
 
+  /**
+   * Clears the stored session and publishes the signed-out state. Invoked by
+   * the transport layer when the API rejects the current credentials.
+   */
+  handleUnauthorized(): void {
+    this.storage.clear();
+    this.notify(null);
+  }
+
   onAuthStateChange(listener: AuthStateListener): Unsubscribe {
     this.listeners.add(listener);
     return () => {
