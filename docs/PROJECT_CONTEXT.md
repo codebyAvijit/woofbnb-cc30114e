@@ -24,35 +24,31 @@ AI tools and developers should consult this document before beginning any implem
 
 ## Phase
 
-Foundation
+Landing Page
 
 ---
 
 ## Current Milestone
 
-Initialize the WoofBnB project foundation.
+Implement the public Landing Page.
 
-Current work focuses on establishing the project structure, architecture, shared components, routing, layouts, API integration, and development workflow.
+Current work focuses on the public homepage, initial branding and landing page navigation, built on the approved Foundation.
 
-No business features should be implemented until the foundation has been reviewed and approved.
+No further business features shall be implemented until the Landing Page has been reviewed and approved.
 
 ---
 
 # 3. Current Objective
 
-The immediate objective is to generate the initial application foundation.
+The immediate objective is the public Landing Page.
 
-The generated project should include:
+The implemented scope includes:
 
-- Project initialization
-- Shared application structure
-- Routing foundation
-- Layout foundation
-- Shared UI components
-- API integration foundation
-- Authentication foundation
-- Error handling foundation
-- Project configuration
+- Public homepage composed within the shared public layout
+- Platform purpose and value proposition
+- Pet owner and pet sitter journey overview
+- Landing page navigation
+- Page metadata
 
 Business functionality shall be implemented during later milestones.
 
@@ -115,23 +111,17 @@ The project shall proceed according to the following priorities.
 
 ## Priority 1
 
-Complete the project foundation.
+Complete the Landing Page.
 
 ---
 
 ## Priority 2
 
-Review the generated foundation against the approved documentation.
+Review the Landing Page against the approved documentation.
 
 ---
 
 ## Priority 3
-
-Implement the Landing Page.
-
----
-
-## Priority 4
 
 Continue feature development following the approved roadmap.
 
@@ -156,19 +146,21 @@ Only one major feature should be generated during each AI-assisted development s
 - knowledge.md
 - Lovable project initialization
 - Foundation generation
+- Foundation review
+- Landing Page implementation
 
 ---
 
 ## In Progress
 
-- Foundation review
+- Landing Page review
 
 ---
 
 ## Pending
 
 - GitHub repository verification
-- Landing Page implementation
+- Search milestone
 
 ---
 
@@ -203,20 +195,9 @@ If conflicting information exists, AI shall follow the document priority defined
 
 # 10. Next Milestone
 
-The next milestone is to generate the initial WoofBnB project foundation.
+The next milestone is the Search feature, following the approved roadmap.
 
-The generated project should establish:
-
-- Project structure.
-- Application routing.
-- Shared layouts.
-- Shared UI components.
-- API communication foundation.
-- Authentication foundation.
-- Error handling foundation.
-- Development configuration.
-
-No business functionality shall be implemented during this milestone.
+It shall begin only after the Landing Page has been reviewed and approved.
 
 ---
 
