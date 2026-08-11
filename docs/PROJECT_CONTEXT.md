@@ -24,17 +24,17 @@ AI tools and developers should consult this document before beginning any implem
 
 ## Phase
 
-Foundation
+Landing Page
 
 ---
 
 ## Current Milestone
 
-Initialize the WoofBnB project foundation.
+Implement the public Landing Page.
 
-Current work focuses on establishing the project structure, architecture, shared components, routing, layouts, API integration, and development workflow.
+Current work focuses on the public homepage, initial branding and landing page navigation, built on the approved Foundation.
 
-No business features should be implemented until the foundation has been reviewed and approved.
+No further business features shall be implemented until the Landing Page has been reviewed and approved.
 
 ---
 
