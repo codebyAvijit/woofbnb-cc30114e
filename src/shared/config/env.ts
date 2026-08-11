@@ -18,14 +18,14 @@ export interface AppEnvironment {
 }
 
 function readApiBaseUrl(): string {
-  const configured = import.meta.env['VITE_API_BASE_URL'];
+  const configured = import.meta.env["VITE_API_BASE_URL"];
   const base = typeof configured === "string" && configured.length > 0 ? configured : "";
   const normalized = base.replace(/\/+$/, "");
   return normalized.length > 0 ? normalized : API_VERSION_PREFIX;
 }
 
 function readApiTimeout(): number {
-  const configured = Number(import.meta.env['VITE_API_TIMEOUT_MS']);
+  const configured = Number(import.meta.env["VITE_API_TIMEOUT_MS"]);
   return Number.isFinite(configured) && configured > 0 ? configured : 15000;
 }
 

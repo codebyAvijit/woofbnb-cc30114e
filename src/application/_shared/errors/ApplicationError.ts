@@ -61,8 +61,6 @@ export function toUserMessage(error: ApplicationError): string {
     case "SERVER_ERROR":
       return "Something went wrong on our end. Please try again shortly.";
     default:
-      return error.message.length > 0
-        ? error.message
-        : "Something went wrong. Please try again.";
+      return error.message.length > 0 ? error.message : "Something went wrong. Please try again.";
   }
 }

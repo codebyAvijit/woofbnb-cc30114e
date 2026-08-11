@@ -135,10 +135,8 @@ export class HttpClient {
       const payload = (await response.json().catch(() => null)) as ApiResponse<T> | null;
 
       if (!response.ok || payload === null || payload.success === false) {
-        const message =
-          payload?.message ?? `Request failed with status ${String(response.status)}`;
-        const details =
-          payload !== null && payload.success === false ? payload.errors : undefined;
+        const message = payload?.message ?? `Request failed with status ${String(response.status)}`;
+        const details = payload !== null && payload.success === false ? payload.errors : undefined;
         return err(mapStatusToError(response.status, message, details));
       }
 
@@ -147,18 +145,14 @@ export class HttpClient {
       if (error instanceof DOMException && error.name === "AbortError") {
         return err(createApplicationError("TIMEOUT", "The request timed out."));
       }
-      return err(
-        createApplicationError("NETWORK_ERROR", "Unable to reach the WoofBnB API."),
-      );
+      return err(createApplicationError("NETWORK_ERROR", "Unable to reach the WoofBnB API."));
     } finally {
       clearTimeout(timeout);
     }
   }
 }
 
-export function createHttpClient(
-  overrides: Partial<HttpClientOptions> = {},
-): HttpClient {
+export function createHttpClient(overrides: Partial<HttpClientOptions> = {}): HttpClient {
   return new HttpClient({
     baseUrl: env.apiBaseUrl,
     timeoutMs: env.apiTimeoutMs,

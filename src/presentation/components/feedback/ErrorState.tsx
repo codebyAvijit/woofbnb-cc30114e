@@ -31,8 +31,7 @@ export function ErrorState({
   onRetry,
   className,
 }: ErrorStateProps) {
-  const message =
-    description ?? (error ? toUserMessage(error) : "Please try again in a moment.");
+  const message = description ?? (error ? toUserMessage(error) : "Please try again in a moment.");
 
   return (
     <div

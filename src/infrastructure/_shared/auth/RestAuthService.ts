@@ -98,9 +98,7 @@ export class RestAuthService implements IAuthService {
     const session = this.storage.read();
     if (!session?.refreshToken) {
       this.notify(null);
-      return err(
-        createApplicationError("UNAUTHENTICATED", "No active session to refresh."),
-      );
+      return err(createApplicationError("UNAUTHENTICATED", "No active session to refresh."));
     }
 
     const result = await this.http.post<AuthSessionDto>("/auth/refresh", {

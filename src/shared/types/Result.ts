@@ -42,9 +42,6 @@ export function unwrapOr<T, E>(result: Result<T, E>, fallback: T): T {
 }
 
 /** Maps the value of a successful result, leaving failures untouched. */
-export function mapResult<T, U, E>(
-  result: Result<T, E>,
-  map: (value: T) => U,
-): Result<U, E> {
+export function mapResult<T, U, E>(result: Result<T, E>, map: (value: T) => U): Result<U, E> {
   return result.success ? ok(map(result.value)) : result;
 }
