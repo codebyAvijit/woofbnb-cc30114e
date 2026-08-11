@@ -9,9 +9,16 @@ import { LANDING_VALUE_PROPOSITIONS } from "@/presentation/features/landing/cont
 
 export function LandingValueProps() {
   return (
-    <section id="how-it-works" className="border-b border-border bg-muted/30" aria-labelledby="landing-value-heading">
+    <section
+      id="how-it-works"
+      className="border-b border-border bg-muted/30"
+      aria-labelledby="landing-value-heading"
+    >
       <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
-        <h2 id="landing-value-heading" className="text-2xl font-semibold tracking-tight text-foreground">
+        <h2
+          id="landing-value-heading"
+          className="text-2xl font-semibold tracking-tight text-foreground"
+        >
           Why pet owners choose WoofBnB
         </h2>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

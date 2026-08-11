@@ -12,10 +12,7 @@ import { LandingHero } from "@/presentation/features/landing/components/LandingH
 import { LandingSectionNav } from "@/presentation/features/landing/components/LandingSectionNav";
 import { LandingSteps } from "@/presentation/features/landing/components/LandingSteps";
 import { LandingValueProps } from "@/presentation/features/landing/components/LandingValueProps";
-import {
-  LANDING_OWNER_STEPS,
-  LANDING_SITTER_STEPS,
-} from "@/presentation/features/landing/content";
+import { LANDING_OWNER_STEPS, LANDING_SITTER_STEPS } from "@/presentation/features/landing/content";
 
 export function LandingPage() {
   return (
