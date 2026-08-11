@@ -40,19 +40,15 @@ No further business features shall be implemented until the Landing Page has bee
 
 # 3. Current Objective
 
-The immediate objective is to generate the initial application foundation.
+The immediate objective is the public Landing Page.
 
-The generated project should include:
+The implemented scope includes:
 
-- Project initialization
-- Shared application structure
-- Routing foundation
-- Layout foundation
-- Shared UI components
-- API integration foundation
-- Authentication foundation
-- Error handling foundation
-- Project configuration
+- Public homepage composed within the shared public layout
+- Platform purpose and value proposition
+- Pet owner and pet sitter journey overview
+- Landing page navigation
+- Page metadata
 
 Business functionality shall be implemented during later milestones.
 
