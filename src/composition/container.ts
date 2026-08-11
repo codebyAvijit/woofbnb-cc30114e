@@ -18,14 +18,20 @@ export interface AppServices {
 function buildServices(): AppServices {
   const tokenStorage = new LocalTokenStorage();
 
+  let authService: RestAuthService | null = null;
+
   const httpClient = createHttpClient({
     getAccessToken: () => tokenStorage.read()?.accessToken ?? null,
     onUnauthorized: () => {
-      tokenStorage.clear();
+      // Keep the presentation layer in sync when credentials are rejected.
+      if (authService) authService.handleUnauthorized();
+      else tokenStorage.clear();
     },
   });
 
-  return { authService: new RestAuthService(httpClient, tokenStorage) };
+  authService = new RestAuthService(httpClient, tokenStorage);
+
+  return { authService };
 }
 
 let services: AppServices | null = null;

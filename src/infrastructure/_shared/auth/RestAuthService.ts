@@ -98,9 +98,7 @@ export class RestAuthService implements IAuthService {
     const session = this.storage.read();
     if (!session?.refreshToken) {
       this.notify(null);
-      return err(
-        createApplicationError("UNAUTHENTICATED", "No active session to refresh."),
-      );
+      return err(createApplicationError("UNAUTHENTICATED", "No active session to refresh."));
     }
 
     const result = await this.http.post<AuthSessionDto>("/auth/refresh", {
@@ -108,6 +106,15 @@ export class RestAuthService implements IAuthService {
       authenticated: false,
     });
     return this.persist(result);
+  }
+
+  /**
+   * Clears the stored session and publishes the signed-out state. Invoked by
+   * the transport layer when the API rejects the current credentials.
+   */
+  handleUnauthorized(): void {
+    this.storage.clear();
+    this.notify(null);
   }
 
   onAuthStateChange(listener: AuthStateListener): Unsubscribe {

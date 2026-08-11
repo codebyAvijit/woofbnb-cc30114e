@@ -6,10 +6,7 @@
  */
 
 export type DomainErrorCode =
-  | "VALIDATION_FAILED"
-  | "BUSINESS_RULE_VIOLATED"
-  | "NOT_FOUND"
-  | "UNKNOWN";
+  "VALIDATION_FAILED" | "BUSINESS_RULE_VIOLATED" | "NOT_FOUND" | "UNKNOWN";
 
 export interface DomainError {
   readonly code: DomainErrorCode;
