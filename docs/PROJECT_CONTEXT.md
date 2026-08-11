@@ -195,20 +195,9 @@ If conflicting information exists, AI shall follow the document priority defined
 
 # 10. Next Milestone
 
-The next milestone is to generate the initial WoofBnB project foundation.
+The next milestone is the Search feature, following the approved roadmap.
 
-The generated project should establish:
-
-- Project structure.
-- Application routing.
-- Shared layouts.
-- Shared UI components.
-- API communication foundation.
-- Authentication foundation.
-- Error handling foundation.
-- Development configuration.
-
-No business functionality shall be implemented during this milestone.
+It shall begin only after the Landing Page has been reviewed and approved.
 
 ---
 
