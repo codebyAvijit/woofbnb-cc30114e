@@ -111,23 +111,17 @@ The project shall proceed according to the following priorities.
 
 ## Priority 1
 
-Complete the project foundation.
+Complete the Landing Page.
 
 ---
 
 ## Priority 2
 
-Review the generated foundation against the approved documentation.
+Review the Landing Page against the approved documentation.
 
 ---
 
 ## Priority 3
-
-Implement the Landing Page.
-
----
-
-## Priority 4
 
 Continue feature development following the approved roadmap.
 
@@ -152,19 +146,21 @@ Only one major feature should be generated during each AI-assisted development s
 - knowledge.md
 - Lovable project initialization
 - Foundation generation
+- Foundation review
+- Landing Page implementation
 
 ---
 
 ## In Progress
 
-- Foundation review
+- Landing Page review
 
 ---
 
 ## Pending
 
 - GitHub repository verification
-- Landing Page implementation
+- Search milestone
 
 ---
 
